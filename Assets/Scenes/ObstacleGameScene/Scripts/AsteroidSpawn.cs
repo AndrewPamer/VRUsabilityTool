@@ -30,8 +30,8 @@ public class AsteroidSpawn : MonoBehaviour
 
     void SpawnAsteroid()
     {
-        //random angle 0 - 180
-        float randomAngle = Random.Range(0, Mathf.PI);
+        //random angle 0 - 360
+        float randomAngle = Random.Range(0, 2*Mathf.PI);
 
         float x = Mathf.Cos(randomAngle) * radius;
         float z = Mathf.Sin(randomAngle) * radius;
