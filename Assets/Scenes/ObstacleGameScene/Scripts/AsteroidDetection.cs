@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class AsteroidDetection : MonoBehaviour
 {
-    public GameOverScreen gameOverScreen;
+    public GameOverMenuManager gameOverScreen;
 
     private void OnTriggerEnter(Collider other)
     {
-        gameOverScreen.Setup(1, 2);
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            gameOverScreen.SetUp(1, 2);
+        }
     }
 
 }

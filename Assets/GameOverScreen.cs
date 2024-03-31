@@ -8,6 +8,9 @@ public class GameOverScreen : MonoBehaviour
 {
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
+
+
+
     public void Setup(int correct, int incorrect)
     {
         gameObject.SetActive(true);
@@ -15,3 +18,4 @@ public class GameOverScreen : MonoBehaviour
         incorrectText.text = incorrect.ToString();
     }
 }
+  

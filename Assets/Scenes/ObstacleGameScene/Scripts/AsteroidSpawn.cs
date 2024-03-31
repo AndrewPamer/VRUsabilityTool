@@ -24,8 +24,27 @@ public class AsteroidSpawn : MonoBehaviour
 
     void Start()
     {
+    }
+
+    public void BeginAsteroidSpawn()
+    {
+        //TODO: reset the speed when restarting.
         InvokeRepeating(nameof(SpawnAsteroid), 1.0f, spawnSpeed);
         InvokeRepeating(nameof(AsteroidSpeedIncrease), 10.0f, 30.0f);
+
+    }
+
+    public void EndAsteroidSpawn()
+    {
+        //1. Stop spawning asteroids
+        CancelInvoke();
+
+        //2. Destroy all present asteroids
+        GameObject[] activeAsteroids = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject asteroid in activeAsteroids)
+        {
+            Destroy(asteroid);
+        }
     }
 
     void OnEnable()
