@@ -10,6 +10,7 @@ public class AsteroidDetection : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
+            //TODO: replace 1, 2 with the actual values
             gameOverScreen.SetUp(1, 2);
         }
     }

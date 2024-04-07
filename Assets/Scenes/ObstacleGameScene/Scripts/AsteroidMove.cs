@@ -19,8 +19,9 @@ public class AsteroidMove : MonoBehaviour
 
     void Awake()
     {
-        target = GameObject.Find("StarSparrow");
+        target = GameObject.FindGameObjectWithTag("Player");
         direction = target.transform.position - transform.position;
+        //print($"Target, {target} is at {target.transform.position}. I am moving in the {direction} direction");
         //Destroy after destroyTime seconds
         Destroy(gameObject, destroyTime);
     }

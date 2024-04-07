@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using TMPro;
 using Random = UnityEngine.Random;
 public class AsteroidSpawn : MonoBehaviour
 {
@@ -13,24 +14,33 @@ public class AsteroidSpawn : MonoBehaviour
     public float radius = 50.0f;
 
     //Speed of spawning
-    public float spawnSpeed = 1.0f;
+    public float defaultSpawnSpeed = 1.0f;
+
+    //The time it takes for the difficulty to increase
+    public float timeTillDifficultyIncrease = 30.0f;
+
+    //The canvas that is next to the ship
+    public GameObject shipNotificationCanvas;
+
+    public TextMeshProUGUI notificationTextBox;
 
     public Vector3 playerLocation;
 
-    private int difficulty = 2;
+    private int difficulty;
 
-    public float spawnsPerSecond;
-    private float nextSpawn;
+    private float spawnSpeed;
 
-    void Start()
-    {
-    }
+
+
 
     public void BeginAsteroidSpawn()
     {
-        //TODO: reset the speed when restarting.
+        //Get default values
+        spawnSpeed = defaultSpawnSpeed;
+        difficulty = 1;
+        //Begin spawning routines and difficulty routines
         InvokeRepeating(nameof(SpawnAsteroid), 1.0f, spawnSpeed);
-        InvokeRepeating(nameof(AsteroidSpeedIncrease), 10.0f, 30.0f);
+        InvokeRepeating(nameof(DifficultyIncrease), timeTillDifficultyIncrease / 2, timeTillDifficultyIncrease);
 
     }
 
@@ -47,19 +57,35 @@ public class AsteroidSpawn : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        nextSpawn = Time.time;
-    }
-
     void Update()
     {
         playerLocation = transform.position;
     }
 
-    void AsteroidSpeedIncrease()
+    IEnumerator ShowNotification(string notificationText)
     {
-        this.spawnSpeed /= 2;
+        //1. Set the text 
+        notificationTextBox.text = notificationText;
+
+        //2. Show the notification
+        shipNotificationCanvas.SetActive(true);
+
+        //3. Wait while the animation plays
+        yield return new WaitForSeconds(4);
+
+        //4. Disable the canvas
+        shipNotificationCanvas.SetActive(false);
+
+    }
+
+    void DifficultyIncrease()
+    {
+        Debug.Log("Diff up");
+        //Increase difficulty 
+        difficulty++;
+        StartCoroutine(ShowNotification("Difficulty Up!"));
+        this.spawnSpeed /= difficulty;
+        //Find every asteroid and increase its speed
         GameObject[] activeAsteroids = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject asteroid in activeAsteroids)
         {
@@ -67,7 +93,6 @@ public class AsteroidSpawn : MonoBehaviour
             Debug.Log(Mathf.Pow(2, difficulty / 2));
             asteroidController.speed = Mathf.Pow(2, difficulty / 2);
         }
-        difficulty++;
     }
 
     void SpawnAsteroid()
