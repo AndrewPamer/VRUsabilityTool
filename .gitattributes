@@ -2,3 +2,5 @@
 * text=auto
 update1.mov filter=lfs diff=lfs merge=lfs -text
 update2.mov filter=lfs diff=lfs merge=lfs -text
+.zip filter=lfs diff=lfs merge=lfs -text
+Basketball[[:space:]]visual[[:space:]]updates.zip filter=lfs diff=lfs merge=lfs -text
