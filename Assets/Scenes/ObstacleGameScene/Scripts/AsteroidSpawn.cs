@@ -10,6 +10,12 @@ public class AsteroidSpawn : MonoBehaviour
     // Reference to the Prefab.
     public GameObject[] asteroids;
 
+    //Reference to the powerups
+    public GameObject[] powerups;
+
+    //The number of asteroids that spawn before a powerup spawns
+    public int asteroidsBeforePowerup = 15;
+
     //radius of circle around player
     public float radius = 50.0f;
 
@@ -30,7 +36,7 @@ public class AsteroidSpawn : MonoBehaviour
 
     private float spawnSpeed;
 
-
+    private int asteroidSpawnNumber = 0;
 
 
     public void BeginAsteroidSpawn()
@@ -104,11 +110,18 @@ public class AsteroidSpawn : MonoBehaviour
         float z = Mathf.Sin(randomAngle) * radius;
 
         Vector3 randomSpawnPostition = new Vector3(x, Random.Range(-5,6), z);
+        if (asteroidSpawnNumber == asteroidsBeforePowerup)
+        {
+            asteroidSpawnNumber = 0;
+            GameObject randomPowerup = powerups[Random.Range(0, powerups.Length)];
+            Instantiate(randomPowerup, new Vector3(x, Random.Range(-5, 6), z), Quaternion.identity);
+        }
         GameObject randomAsteroid = asteroids[Random.Range(0, asteroids.Length)];
         Instantiate(randomAsteroid, randomSpawnPostition, Quaternion.identity);
 
         AsteroidMove asteroidController = randomAsteroid.GetComponent<AsteroidMove>();
         asteroidController.speed = Mathf.Pow(2, difficulty / 2);
+        asteroidSpawnNumber++;
     }
 
 }
