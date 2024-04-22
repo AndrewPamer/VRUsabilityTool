@@ -290,6 +290,11 @@ MonoBehaviour:
   spawnDistance: 2
   menu: {fileID: 428103183}
   answerButtonsContainer: {fileID: 1169015740}
+  answerButtons:
+  - {fileID: 1171232381}
+  - {fileID: 953853051}
+  - {fileID: 871684610}
+  - {fileID: 1059707355}
   questionText: {fileID: 1786698446}
   answerButtonPrefab: {fileID: 5374361967459301552, guid: df9f30c5d6021c545a381d7785f1de17, type: 3}
 --- !u!1 &179727902
@@ -3792,6 +3797,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 750, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1171232381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5374361967459301552, guid: df9f30c5d6021c545a381d7785f1de17, type: 3}
+  m_PrefabInstance: {fileID: 1258426308258982019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229736840
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,7 +5608,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Question Goes here!
+  m_text: A system allows a user to upload a file and convert it to a number of various
+    file formats. The process of converting the file can take some time. At what
+    time should the system provide feedback of the file conversion to the user?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbb7c6a04be6d8341934b839f24b42e1, type: 2}
   m_sharedMaterial: {fileID: 4687939059374929122, guid: fbb7c6a04be6d8341934b839f24b42e1, type: 2}
@@ -5625,10 +5637,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 22.3
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -7393,6 +7405,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 207422499}
   questionScreen: {fileID: 143249852}
+  jsonQFile: {fileID: 4900000, guid: 65326ac61d8a6b54b9576f3abdd54e16, type: 3}
+  questionsRight: 0
+  questionsWrong: 0
 --- !u!1 &3276905382819543943
 GameObject:
   m_ObjectHideFlags: 0

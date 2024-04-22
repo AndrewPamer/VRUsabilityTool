@@ -61,6 +61,13 @@ public class AsteroidSpawn : MonoBehaviour
         {
             Destroy(asteroid);
         }
+
+        //3. Destroy all present powerups
+        GameObject[] activePowerups = GameObject.FindGameObjectsWithTag("Powerup");
+        foreach (GameObject powerup in activePowerups)
+        {
+            Destroy(powerup);
+        }
     }
 
     void Update()
